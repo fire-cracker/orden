@@ -12,3 +12,4 @@
 .env
 
 yarn-error.log*
+.nyc_output
