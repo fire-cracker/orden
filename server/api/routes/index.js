@@ -1,10 +1,11 @@
 import { Router } from 'express'
 
-import { createOrder } from '../controllers/orders.controllers'
-import { createOrderValidator } from '../middlewares/validation/orders.validation'
+import { createOrder, patchOrder } from '../controllers/orders.controllers'
+import { createOrderValidator,  updateOrderValidator } from '../middlewares/validation/orders.validation'
 
 const router = Router()
 
 router.post('/orders', createOrderValidator, createOrder)
+router.put('/orders/:orderId',  updateOrderValidator, patchOrder)
 
 export default router

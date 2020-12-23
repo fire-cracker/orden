@@ -7,8 +7,8 @@ const city = Joi.string().trim().allow(null, '').max(50)
 const street = Joi.string().trim().allow(null, '').max(100)
 const country = Joi.string().trim().allow(null, '').max(50)
 const zip = Joi.number().integer().allow(null, '')
-const bookingDate = Joi.number().integer().required()
-const title = Joi.string().trim().max(50).required()
+const bookingDate = Joi.number().integer()
+const title = Joi.string().trim().min(1).max(50)
 
 const address = Joi.object({
   city,
@@ -25,7 +25,12 @@ const customer = Joi.object({
 
 export const createOrderSchema = Joi.object().keys({
   address,
-  bookingDate,
+  bookingDate: bookingDate.required(),
   customer,
-  title
+  title: title.required()
 })
+
+export const updateOrderSchema = Joi.object().keys({
+  bookingDate,
+  title
+}).min(1)

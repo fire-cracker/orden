@@ -28,3 +28,13 @@ export const incorrectNewOrder = {
     phone: '015252098067'
   }
 }
+
+export const orderUpdate = {
+  bookingDate: 1554284950000,
+  title: 'Test Order 1'
+}
+
+export const order = {
+  ...newOrder,
+  uid: "hKlIKPoZc2xCKGTUKZK2"
+}
