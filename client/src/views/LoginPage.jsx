@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -18,6 +19,7 @@ const LoginPage = () => {
   })
   const usersState = useSelector(state => state.usersState)
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const onhandleChange = ({ target: { name, value } }) => {
     setUserDetails((prevState) => ({
@@ -35,7 +37,8 @@ const LoginPage = () => {
       return
     }
     setValidated(true)
-    dispatch(login(email, password))
+    const user = await dispatch(login(email, password))
+    if(user) history.push("/orders")
   }
 
   return (

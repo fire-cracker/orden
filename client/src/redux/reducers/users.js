@@ -1,6 +1,7 @@
 import { ActionType } from '../actionsTypes'
 
 const {
+  SET_USER_STATE,
   LOGIN_REQUEST_PENDING,
   LOGIN_REQUEST_SUCCESS,
   LOGIN_REQUEST_FAILED
@@ -13,6 +14,13 @@ const initialState = {
 }
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_USER_STATE:
+      return {
+        ...state,
+        user: action.payload,
+        isLoggedIn: true,
+      }
+
     case LOGIN_REQUEST_PENDING:
       return {
         ...state,
@@ -22,7 +30,6 @@ export default (state = initialState, action) => {
     case LOGIN_REQUEST_SUCCESS:
       return {
         ...state,
-        user: action.payload,
         isLoggedIn: true,
         logingIn: false
       }

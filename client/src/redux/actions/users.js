@@ -3,6 +3,7 @@ import { toast } from 'react-toastify'
 import firebase from '../../utils/firebaseConfig'
 import { ActionType } from '../actionsTypes'
 
+const firestore = firebase.firestore()
 const {
   LOGIN_REQUEST_PENDING,
   LOGIN_REQUEST_SUCCESS,
@@ -10,7 +11,7 @@ const {
   SET_USER_STATE,
 } = ActionType
 
-export const setLoggedInState = (data) => ({
+export const setUserState = (data) => ({
   type: SET_USER_STATE,
   payload: data
 })
@@ -33,14 +34,29 @@ export const login = (email, password) => async (
 )=> {
   try {
     dispatch(loginRequestPending())
-   const data = await firebase.auth().signInWithEmailAndPassword(email, password)
-    console.log('data>>>>>>', data)
-    // dispatch(loginRequestSuccess(user))
-    return data
+    await firebase.auth().signInWithEmailAndPassword(email, password)
+    dispatch(loginRequestSuccess())
+    return;
   } catch (error) {
-    console.log('error>>>>>', error)
     dispatch(loginRequestFailed())
     toast.error('wrong credentials, please try again')
     return error
   }
 }
+
+export const getUser = (userDetails) => async(dispatch) => {
+  try{
+    const { uid } = userDetails
+    const userDocument = await firestore.doc(`users/${uid}`).get();
+
+    const user = {
+      uid,
+      ...userDocument.data()
+    };
+    dispatch(setUserState(user))
+    return user
+  }catch(error) {
+    toast.error('User not found')
+    return error
+  }
+};
