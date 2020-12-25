@@ -1,0 +1,30 @@
+
+.modal-wrapper {
+  @include overlay-background(0.5, '/images/banner.jpeg');
+  .wrapper-row {
+    border: 1.7rem solid var(--white);
+    .modal-header .close {
+      outline: none;
+      span:first-child {
+        border: 2px solid var(--darkkhaki);
+        border-radius: 0;
+        padding: 0 .4rem;
+        font-size: 1.9rem;
+        color: var(--black);
+      }
+      :hover {
+        background-color: var(--darkkhaki);
+      }
+    }
+    .wrapper-row-col {
+      border: 0.6rem solid var(--darkkhaki);
+    }
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .modal-content {
+    max-width: 42vw;
+    margin: auto;
+  }
+}

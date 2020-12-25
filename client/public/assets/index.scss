@@ -1,0 +1,37 @@
+:root {
+  --black: #081624;
+  --darkkhaki: #c5a572;
+  --dimgray: 	#D0D0D0;
+  --font-family-montserrat: 'Montserrat', Arial, Helvetica, sans-serif;
+  --font-family-bellefair: "Bellefair",Arial,Helvetica,sans-serif
+}
+
+@mixin overlay-background($overlay, $image: false) {
+  @if ($image) {
+    background-image: linear-gradient(0deg, rgba(0,0,0,$overlay), rgba(0,0,0,$overlay)), url($image);
+  } @else {
+    background-image: linear-gradient(0deg, rgba(0,0,0,$overlay), rgba(0,0,0,$overlay));
+  };
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+@mixin reset() {
+  margin: 0;
+  padding: 0;
+}
+
+$theme-colors: (
+  'info': tomato,
+  'danger': teal,
+  'black': #081624,
+  'darkkhaki': #c5a572,
+  'dimgray': #D0D0D0,
+  'ghostwhite': #f7f9fb,
+  'lavender': #e9ecef
+);
+
+@import './toast.scss';
+@import './login.scss';
+@import '../node_modules/bootstrap/scss/bootstrap';
