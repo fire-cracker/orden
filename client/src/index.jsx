@@ -1,15 +1,17 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 
-import Provider from './provider'
 import reportWebVitals from './reportWebVitals'
+import storeConfig from './redux/configStore'
 import App from './App'
 import './index.scss'
 
+const store = storeConfig()
 
 render(
   <React.StrictMode>
-    <Provider>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>,

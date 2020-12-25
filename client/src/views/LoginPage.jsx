@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { toast } from 'react-toastify'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -8,15 +8,16 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import ClipLoader from 'react-spinners/ClipLoader'
 
-import { auth } from '../utils/firebaseConfig'
+import { login } from '../redux/actions/users'
 
 const LoginPage = () => {
   const [validated, setValidated] = useState(false)
-  const [loading, setLoading] = useState(false)
   const [userDetails, setUserDetails] = useState({
     email: '',
     password: ''
   })
+  const usersState = useSelector(state => state.usersState)
+  const dispatch = useDispatch()
 
   const onhandleChange = ({ target: { name, value } }) => {
     setUserDetails((prevState) => ({
@@ -33,12 +34,8 @@ const LoginPage = () => {
       event.stopPropagation()
       return
     }
-    setLoading(true)
     setValidated(true)
-    await auth
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => toast.error('wrong credentials, please try again'))
-    setLoading(false)
+    dispatch(login(email, password))
   }
 
   return (
@@ -98,7 +95,7 @@ const LoginPage = () => {
                     </Form.Row>
                     <Form.Row className='justify-content-center align-items-center'>
                       <Button className='bg-black border-0 rounded-0' type='submit'>
-                        {loading ? (
+                        {usersState.logingIn ? (
                           <ClipLoader size={30} color={'#00acc1'} loading={true} />
                         ) : (
                           'Login'

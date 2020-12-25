@@ -7,18 +7,18 @@ export const Context = createContext()
 const Provider = ({ children }) => {
   const [user, setUser] = useState(null)
 
-  useEffect(() => {
-    (async () => {
-      auth.onAuthStateChanged(async (userAuth) => {
-        const user = await generateUserDocument(userAuth)
-        setUser(user)
-      })
-    })()
-  }, [])
+  // useEffect(() => {
+  //   (async () => {
+  //     auth.onAuthStateChanged(async (userAuth) => {
+  //       const user = await generateUserDocument(userAuth)
+  //       setUser(user)
+  //     })
+  //   })()
+  // }, [])
 
   return (
     <Context.Provider value={user}>
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       {children}
     </Context.Provider>
   )

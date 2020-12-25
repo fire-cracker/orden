@@ -1,7 +1,7 @@
 .Toastify__toast--error.toast-custom-style,
 .Toastify__toast--success.toast-custom-style {
   border-radius: 0.2rem;
-  font-family: Montserrat-Light;
+  font-family: var(--font-family-montserrat);
   min-height: inherit;
   padding-right: 2rem;
   position: relative;

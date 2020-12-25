@@ -1,0 +1,24 @@
+.top-banner {
+  @include overlay-background(0.5, '/images/banner.jpeg');
+  height: 10rem;
+}
+.main-wrapper {
+  .container-body {
+    .card {
+      border-radius: 0 !important;
+      width: 100%;
+      .card-body {
+        border: 1.7rem solid var(--white);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .main-wrapper {
+    .container-body {
+      padding: 0;
+    }
+  }
+}
+
