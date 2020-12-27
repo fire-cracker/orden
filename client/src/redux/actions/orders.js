@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify'
+import moment from 'moment'
 
 import firebase from '../../utils/firebaseConfig'
 import { ActionType } from '../actionsTypes'
@@ -95,11 +96,13 @@ export const getOrder = (orderId) => async (dispatch) => {
 
 export const updateOrder = (order) => async (dispatch) => {
   try {
-    const { id, title, bookingDate} = order
+    const { id, title, bookingDate } = order
+    const date = moment(new Date(bookingDate)).unix()
+
     dispatch(updateOrderRequestPending())
     const response = await fetch(`http://localhost:8080/orders/${id}`, {
       method: 'PUT',
-      body: JSON.stringify({ title, bookingDate }),
+      body: JSON.stringify({ title, bookingDate: date }),
       headers: {
         'Content-Type': 'application/json',
       },
