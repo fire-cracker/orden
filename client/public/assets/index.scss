@@ -1,7 +1,4 @@
 :root {
-  --black: #081624;
-  --darkkhaki: #c5a572;
-  --dimgray: 	#D0D0D0;
   --font-family-montserrat: 'Montserrat', Arial, Helvetica, sans-serif;
   --font-family-bellefair: "Bellefair",Arial,Helvetica,sans-serif
 }
@@ -24,7 +21,6 @@
 
 $theme-colors: (
   'info': tomato,
-  'danger': teal,
   'black': #081624,
   'darkkhaki': #c5a572,
   'dimgray': #D0D0D0,
@@ -36,4 +32,6 @@ $theme-colors: (
 @import './login.scss';
 @import './wrapper.scss';
 @import './ordersPage.scss';
+@import './header.scss';
 @import '../node_modules/bootstrap/scss/bootstrap';
+@import '../node_modules/react-toastify/dist/ReactToastify.css';

@@ -34,7 +34,6 @@ const LoginPage = () => {
     const { email, password } = userDetails
     if (form && form.checkValidity() === false) {
       event.stopPropagation()
-      return
     }
     setValidated(true)
     const user = await dispatch(login(email, password))
@@ -51,7 +50,7 @@ const LoginPage = () => {
         centered
       >
         <Row className='wrapper-row'>
-          <Col className='wrapper-row-col p-3 justify-content-center align-items-center'>
+          <Col className='border-default p-3 justify-content-center align-items-center'>
             <Modal.Body>
               <Row className='modal-body-row justify-content-center align-items-center text-center'>
                 <Col md={12} className='flex-column justify-content-center align-items-center'>
@@ -64,7 +63,6 @@ const LoginPage = () => {
                       <img
                         src='/images/entwined.svg'
                         alt='entwined'
-                        className='fa fa-cutlery'
                       ></img>
                     </p>
                     <p className='line my-2 mx-1'>&nbsp;</p>

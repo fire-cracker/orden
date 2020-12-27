@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import ClipLoader from 'react-spinners/ClipLoader'
 import moment from 'moment'
 
 import Table from 'react-bootstrap/Table'
@@ -18,13 +17,31 @@ const OrdersPage = () => {
   }, [])
 
   const { orders, fetching } = ordersState
+  const ordersMock = [
+    {
+      uid: 'hKlIKPoZc2xCKGTUKZK2',
+      bookingDate: new Date(),
+      title: 'title',
+      address: {
+        city: 'Barcelona',
+        country: 'Spain',
+        street: 'Pullades',
+        zip: '08027'
+      },
+      customer: {
+        email: 'admin@admin.com',
+        name: 'Gabriel',
+        phone: '666 777 888'
+      }
+    }
+  ]
+
   return (
     <div className='orders-wrapper'>
       <Wrapper>
         <div className='orders-wrapper__table-wrapper p-lg-2'>
           {fetching ? (
-            <Loader/>
-            // <ClipLoader size={50} color={'#00acc1'} loading={true} />
+            <Loader />
           ) : (
             <Table responsive striped hover>
               <thead>
@@ -38,8 +55,9 @@ const OrdersPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {orders &&
-                  orders.map((order, key) => {
+                {
+                // orders &&
+                ordersMock.map((order, key) => {
                     const { customer, address, bookingDate } = order
                     return (
                       <tr key={order.id}>
