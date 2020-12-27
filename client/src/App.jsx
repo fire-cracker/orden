@@ -28,13 +28,13 @@ const App = () => {
   return (
     <BrowserRouter>
       <Container fluid className='p-0 bg-lavender vh-100'>
-        {/* <ToastContainer/> */}
+        <ToastContainer/>
         {loading ? (
           <Loader />
         ) : (
           <>
             <Switch>
-              <Route exact path='/' render={(props) => (!user ? <LoginPage {...props}/> : <Redirect to='/orders' />)} />
+              <Route exact path={['/', '/login']} render={(props) => (!user ? <LoginPage {...props}/> : <Redirect to='/orders' />)} />
               <Route component={Header} />
             </Switch>
             <Route exact path='/orders' render={(props) => (user ? <OrdersPage {...props}/> : <Redirect to='/' />)} />

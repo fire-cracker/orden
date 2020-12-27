@@ -17,25 +17,6 @@ const OrdersPage = () => {
   }, [])
 
   const { orders, fetching } = ordersState
-  const ordersMock = [
-    {
-      id: 'hKlIKPoZc2xCKGTUKZK2',
-      bookingDate: new Date(),
-      title: 'title',
-      address: {
-        city: 'Barcelona',
-        country: 'Spain',
-        street: 'Pullades',
-        zip: '08027'
-      },
-      customer: {
-        email: 'admin@admin.com',
-        name: 'Gabriel',
-        phone: '666 777 888'
-      }
-    }
-  ]
-
   return (
     <div className='orders-wrapper'>
       <Wrapper>
