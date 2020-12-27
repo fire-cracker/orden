@@ -20,9 +20,8 @@ export const loginRequestPending = () => ({
   type: LOGIN_REQUEST_PENDING
 })
 
-export const loginRequestSuccess = (data) => ({
-  type: LOGIN_REQUEST_SUCCESS,
-  payload: data
+export const loginRequestSuccess = () => ({
+  type: LOGIN_REQUEST_SUCCESS
 })
 
 export const loginRequestFailed = () => ({

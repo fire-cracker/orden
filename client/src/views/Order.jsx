@@ -59,7 +59,7 @@ const Order = ({ match }) => {
     dispatch(updateOrder(orderDetails))
   }
 
-  const { success, fetching } = ordersState
+  const { fetching, updating} = ordersState
   const orderMock = {
     uid: '1',
     bookingDate: new Date(),
@@ -201,10 +201,10 @@ const Order = ({ match }) => {
                           <Button
                             className='order-buttton bg-darkkhaki mt-3'
                             type='submit'
-                            disabled={fetching || disabled}
+                            disabled={updating || disabled}
                           >
-                            {fetching ? (
-                              <ClipLoader size={30} color={'#00acc1'} loading={true} />
+                            {updating ? (
+                              <ClipLoader size={30} color={'#fff'} loading={true} />
                             ) : (
                               'Submit Changes'
                             )}

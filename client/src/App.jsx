@@ -25,6 +25,7 @@ const App = () => {
     })
   }, [])
 
+  console.log('user>>>>>', user)
   return (
     <BrowserRouter>
       <Container fluid className='p-0 bg-lavender vh-100'>

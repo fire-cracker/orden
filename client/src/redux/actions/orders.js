@@ -46,9 +46,8 @@ export const updateOrderRequestPending = () => ({
   type: UPDATE_ORDER_REQUEST_PENDING
 })
 
-export const updateOrderRequestSuccess = (data) => ({
-  type: UPDATE_ORDER_REQUEST_SUCCESS,
-  payload: data
+export const updateOrderRequestSuccess = () => ({
+  type: UPDATE_ORDER_REQUEST_SUCCESS
 })
 
 export const updateOrderRequestFailed = () => ({
@@ -96,25 +95,19 @@ export const getOrder = (orderId) => async (dispatch) => {
 
 export const updateOrder = (order) => async (dispatch) => {
   try {
-    console.log('helooooooo>>>>>', order)
     const { id, title, bookingDate} = order
     dispatch(updateOrderRequestPending())
-    fetch(`http://localhost:8080/orders/${id}`, {
+    const response = await fetch(`http://localhost:8080/orders/${id}`, {
       method: 'PUT',
-      body: JSON.stringify({title, bookingDate}),
+      body: JSON.stringify({ title, bookingDate }),
       headers: {
         'Content-Type': 'application/json',
       },
     })
-    // console.log('helooooooo>>>>>', doc.exists)
-    // if(!doc.exists) throw new Error('User not found');
-    // const order = {
-    //   id: doc.id,
-    //   ...doc.data()
-    // }
-
-    // dispatch(updateOrderRequestSuccess(order))
-    // return order
+    const result = await response.json()
+    dispatch(updateOrderRequestSuccess())
+    toast.info(result.status)
+    return result
   } catch (error) {
     dispatch(updateOrderRequestFailed())
     toast.error(error.message)
