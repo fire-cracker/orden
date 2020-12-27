@@ -2,6 +2,7 @@ import chalk from 'chalk'
 import express from 'express'
 import { createLogger, format, transports } from 'winston'
 import morgan from 'morgan'
+import cors from 'cors'
 import dotenv from 'dotenv'
 
 import router from './api/routes'
@@ -13,9 +14,14 @@ const logger = createLogger({
   format: format.simple(),
   transports: [new transports.Console()]
 })
-
 const app = express()
+const corsOptions = {
+  credentials: true,
+  origin: true,
+  optionsSuccessStatus: 200
+}
 
+app.use(cors(corsOptions))
 app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
