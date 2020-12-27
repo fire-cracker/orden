@@ -3,7 +3,6 @@ import { toast } from 'react-toastify'
 import firebase from '../../utils/firebaseConfig'
 import { ActionType } from '../actionsTypes'
 
-const firestore = firebase.firestore()
 const {
   LOGIN_REQUEST_PENDING,
   LOGIN_REQUEST_SUCCESS,
@@ -35,6 +34,7 @@ export const login = (email, password) => async (dispatch) => {
     dispatch(loginRequestSuccess())
     return user
   } catch (error) {
+    // console.log('error>>>>', error)
     dispatch(loginRequestFailed())
     toast.error('wrong credentials, please try again')
     return error
@@ -48,8 +48,7 @@ export const logout = () => {
 export const getUser = (userDetails) => async (dispatch) => {
   try {
     const { uid } = userDetails
-    const userDocument = await firestore.doc(`users/${uid}`).get()
-
+    const userDocument = await firebase.firestore().doc(`users/${uid}`).get()
     const user = {
       uid,
       ...userDocument.data()

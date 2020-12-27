@@ -19,7 +19,7 @@ const OrdersPage = () => {
   const { orders, fetching } = ordersState
   const ordersMock = [
     {
-      uid: 'hKlIKPoZc2xCKGTUKZK2',
+      id: 'hKlIKPoZc2xCKGTUKZK2',
       bookingDate: new Date(),
       title: 'title',
       address: {
@@ -59,14 +59,14 @@ const OrdersPage = () => {
                 orders.map((order, key) => {
                     const { customer, address, bookingDate } = order
                     return (
-                      <tr key={order.uid}>
+                      <tr key={order.id}>
                         <td>{key + 1}</td>
                         <td>{customer?.name || 'N/A'}</td>
                         <td>{`${address?.city}, ${address?.country}`}</td>
                         <td>{moment(new Date(bookingDate)).format('YYYY-MM-DD')}</td>
-                        <td>{order.uid}</td>
+                        <td>{order.id}</td>
                         <td>
-                          <a href={`/orders/${order.uid}`} className='view' title='View Details' data-toggle='tooltip'>
+                          <a href={`/orders/${order.id}`} className='view' title='View Details' data-toggle='tooltip'>
                             <i className='material-icons'>&#xE5C8;</i>
                           </a>
                         </td>
