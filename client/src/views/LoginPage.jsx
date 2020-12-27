@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useHistory } from "react-router-dom";
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -11,7 +10,7 @@ import ClipLoader from 'react-spinners/ClipLoader'
 
 import { login } from '../redux/actions/users'
 
-const LoginPage = () => {
+const LoginPage = ({ history }) => {
   const [validated, setValidated] = useState(false)
   const [userDetails, setUserDetails] = useState({
     email: '',
@@ -19,7 +18,6 @@ const LoginPage = () => {
   })
   const usersState = useSelector(state => state.usersState)
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const onhandleChange = ({ target: { name, value } }) => {
     setUserDetails((prevState) => ({
@@ -34,12 +32,14 @@ const LoginPage = () => {
     const { email, password } = userDetails
     if (form && form.checkValidity() === false) {
       event.stopPropagation()
+      setValidated(true)
+    }else{
+      const user = await dispatch(login(email, password))
+      if(user.id) {history.push("/orders")}
     }
-    setValidated(true)
-    const user = await dispatch(login(email, password))
-    if(user) history.push("/orders")
   }
 
+  const { logingIn } = usersState
   return (
     <div className='login-wrapper'>
       <Modal
@@ -80,7 +80,6 @@ const LoginPage = () => {
                           name='email'
                           onChange={onhandleChange}
                         />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                       </Form.Group>
                       <Form.Group as={Col} controlId='validationCustom02'>
                         <Form.Label></Form.Label>
@@ -91,13 +90,12 @@ const LoginPage = () => {
                           name='password'
                           onChange={onhandleChange}
                         />
-                        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
                       </Form.Group>
                     </Form.Row>
                     <Form.Row className='justify-content-center align-items-center'>
-                      <Button className='bg-black border-0 rounded-0' type='submit'>
-                        {usersState.logingIn ? (
-                          <ClipLoader size={30} color={'#00acc1'} loading={true} />
+                      <Button className='bg-black border-0 rounded-0' type='submit' disabled={logingIn}>
+                        {logingIn ? (
+                          <ClipLoader size={30} color={'#fff'} loading={true} />
                         ) : (
                           'Login'
                         )}

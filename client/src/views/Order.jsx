@@ -30,7 +30,6 @@ const Order = ({ match }) => {
     const {
       params: { orderId }
     } = match
-    // console.log('helooooooo>>>>>')
     dispatch(getOrder(orderId))
   }, [])
 
@@ -54,31 +53,14 @@ const Order = ({ match }) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
       event.stopPropagation()
+      setValidated(true)
+    } else {
+      dispatch(updateOrder(orderDetails))
     }
-    setValidated(true)
-    dispatch(updateOrder(orderDetails))
   }
 
-  const { fetching, updating} = ordersState
-  const orderMock = {
-    uid: '1',
-    bookingDate: new Date(),
-    title: 'title',
-    address: {
-      city: 'Barcelona',
-      country: 'Spain',
-      street: 'Pullades',
-      zip: '08027'
-    },
-    customer: {
-      email: 'admin@admin.com',
-      name: 'Gabriel',
-      phone: '666 777 888'
-    }
-  }
-  // const { bookingDate, title, address, customer } = orderMock
+  const { fetching, updating } = ordersState
   const { bookingDate, title, address, customer } = orderDetails
-  // console.log('adres>>>>', address, 'customer>>>>', customer)
 
   return (
     <div className='order-wrapper'>
@@ -199,7 +181,7 @@ const Order = ({ match }) => {
                         </Form.Row>
                         <Form.Row className='justify-content-center align-items-center'>
                           <Button
-                            className='order-buttton bg-darkkhaki mt-3'
+                            className='order-buttton bg-black mt-3'
                             type='submit'
                             disabled={updating || disabled}
                           >

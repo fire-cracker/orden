@@ -55,19 +55,18 @@ const OrdersPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {
-                // orders &&
-                ordersMock.map((order, key) => {
+                {orders &&
+                orders.map((order, key) => {
                     const { customer, address, bookingDate } = order
                     return (
-                      <tr key={order.id}>
+                      <tr key={order.uid}>
                         <td>{key + 1}</td>
                         <td>{customer?.name || 'N/A'}</td>
                         <td>{`${address?.city}, ${address?.country}`}</td>
                         <td>{moment(new Date(bookingDate)).format('YYYY-MM-DD')}</td>
-                        <td>{order.id}</td>
+                        <td>{order.uid}</td>
                         <td>
-                          <a href='/' className='view' title='View Details' data-toggle='tooltip'>
+                          <a href={`/orders/${order.uid}`} className='view' title='View Details' data-toggle='tooltip'>
                             <i className='material-icons'>&#xE5C8;</i>
                           </a>
                         </td>

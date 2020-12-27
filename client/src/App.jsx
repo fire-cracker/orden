@@ -14,18 +14,17 @@ import { getUser } from './redux/actions/users'
 
 const App = () => {
   const [user, setUser] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(async (userAuth) => {
       const user = await dispatch(getUser(userAuth))
-      setUser(user)
+      if(user.uid) setUser(user)
       setLoading(false)
     })
   }, [])
 
-  console.log('user>>>>>', user)
   return (
     <BrowserRouter>
       <Container fluid className='p-0 bg-lavender vh-100'>
@@ -35,12 +34,11 @@ const App = () => {
         ) : (
           <>
             <Switch>
-              <Route exact path='/' component={LoginPage} />
+              <Route exact path='/' render={(props) => (!user ? <LoginPage {...props}/> : <Redirect to='/orders' />)} />
               <Route component={Header} />
             </Switch>
-            <Route exact path='/orders' render={() => (user ? <OrdersPage /> : <Redirect to='/' />)} />
-            <Route exact path='/orders/:orderId' component={Order} />
-            {/* <Route exact path='/orders/:orderId' render={() => (user ? <Order /> : <Redirect to='/' />)} /> */}
+            <Route exact path='/orders' render={(props) => (user ? <OrdersPage {...props}/> : <Redirect to='/' />)} />
+            <Route exact path='/orders/:orderId' render={(props) => (user ? <Order {...props} /> : <Redirect to='/' />)} />
           </>
         )}
       </Container>

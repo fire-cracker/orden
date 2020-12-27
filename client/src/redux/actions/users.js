@@ -8,7 +8,7 @@ const {
   LOGIN_REQUEST_PENDING,
   LOGIN_REQUEST_SUCCESS,
   LOGIN_REQUEST_FAILED,
-  SET_USER_STATE,
+  SET_USER_STATE
 } = ActionType
 
 export const setUserState = (data) => ({
@@ -28,14 +28,12 @@ export const loginRequestFailed = () => ({
   type: LOGIN_REQUEST_FAILED
 })
 
-export const login = (email, password) => async (
-  dispatch
-)=> {
+export const login = (email, password) => async (dispatch) => {
   try {
     dispatch(loginRequestPending())
-    await firebase.auth().signInWithEmailAndPassword(email, password)
+    const user = await firebase.auth().signInWithEmailAndPassword(email, password)
     dispatch(loginRequestSuccess())
-    return;
+    return user
   } catch (error) {
     dispatch(loginRequestFailed())
     toast.error('wrong credentials, please try again')
@@ -43,19 +41,23 @@ export const login = (email, password) => async (
   }
 }
 
-export const getUser = (userDetails) => async(dispatch) => {
-  try{
+export const logout = () => {
+    firebase.auth().signOut()
+}
+
+export const getUser = (userDetails) => async (dispatch) => {
+  try {
     const { uid } = userDetails
-    const userDocument = await firestore.doc(`users/${uid}`).get();
+    const userDocument = await firestore.doc(`users/${uid}`).get()
 
     const user = {
       uid,
       ...userDocument.data()
-    };
+    }
     dispatch(setUserState(user))
     return user
-  }catch(error) {
+  } catch (error) {
     toast.error('User not found')
     return error
   }
-};
+}
