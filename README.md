@@ -33,6 +33,25 @@ Frontend was built using `React`, `Scss`, `firebase` and the backend was built u
 
 ### Backend
 
+## API End Points
+<table>
+	<tr>
+		<th>HTTPS</th>
+		<th>ENDPOINT</th>
+		<th>DESCRIPTION</th>
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/orders</td> 
+		<td>Get All Orders</td>
+	</tr>
+	<tr>
+		<td>POST</td>
+		<td>/orders/:orderId</td> 
+		<td>Get Order Details</td>
+	</tr>
+</table> 
+
 #### Installation
 - $ cd server
 - $ yarn install , to install dependencies
