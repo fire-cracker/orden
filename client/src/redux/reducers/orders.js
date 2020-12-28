@@ -1,4 +1,4 @@
-import { ActionType } from '../actionsTypes'
+import { ActionType } from '../actionsTypes';
 
 const {
   GET_ORDERS_REQUEST_PENDING,
@@ -9,8 +9,8 @@ const {
   GET_ORDER_REQUEST_FAILED,
   UPDATE_ORDER_REQUEST_PENDING,
   UPDATE_ORDER_REQUEST_SUCCESS,
-  UPDATE_ORDER_REQUEST_FAILED
-} = ActionType
+  UPDATE_ORDER_REQUEST_FAILED,
+} = ActionType;
 
 const initialState = {
   orders: null,
@@ -18,74 +18,74 @@ const initialState = {
   length: 0,
   success: false,
   fetching: false,
-  updating: false
-}
+  updating: false,
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ORDERS_REQUEST_PENDING:
       return {
         ...state,
-        fetching: true
-      }
+        fetching: true,
+      };
 
     case GET_ORDERS_REQUEST_SUCCESS:
       return {
         ...state,
         orders: action.payload,
         success: true,
-        fetching: false
-      }
+        fetching: false,
+      };
 
     case GET_ORDERS_REQUEST_FAILED:
       return {
         ...state,
         success: false,
-        fetching: false
-      }
+        fetching: false,
+      };
 
     case GET_ORDER_REQUEST_PENDING:
       return {
         ...state,
-        fetching: true
-      }
+        fetching: true,
+      };
 
     case GET_ORDER_REQUEST_SUCCESS:
       return {
         ...state,
         order: action.payload,
         success: true,
-        fetching: false
-      }
+        fetching: false,
+      };
 
     case GET_ORDER_REQUEST_FAILED:
       return {
         ...state,
         success: false,
-        fetching: false
-      }
+        fetching: false,
+      };
 
     case UPDATE_ORDER_REQUEST_PENDING:
       return {
         ...state,
-        updating: true
-      }
+        updating: true,
+      };
 
     case UPDATE_ORDER_REQUEST_SUCCESS:
       return {
         ...state,
         success: true,
-        updating: false
-      }
+        updating: false,
+      };
 
     case UPDATE_ORDER_REQUEST_FAILED:
       return {
         ...state,
         success: false,
-        updating: false
-      }
+        updating: false,
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};

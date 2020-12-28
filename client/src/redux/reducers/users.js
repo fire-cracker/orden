@@ -1,17 +1,17 @@
-import { ActionType } from '../actionsTypes'
+import { ActionType } from '../actionsTypes';
 
 const {
   SET_USER_STATE,
   LOGIN_REQUEST_PENDING,
   LOGIN_REQUEST_SUCCESS,
-  LOGIN_REQUEST_FAILED
-} = ActionType
+  LOGIN_REQUEST_FAILED,
+} = ActionType;
 
 const initialState = {
   user: null,
   logingIn: false,
-  isLoggedIn: false
-}
+  isLoggedIn: false,
+};
 export default (state = initialState, action) => {
   switch (action.type) {
     case SET_USER_STATE:
@@ -19,29 +19,29 @@ export default (state = initialState, action) => {
         ...state,
         user: action.payload,
         isLoggedIn: true,
-      }
+      };
 
     case LOGIN_REQUEST_PENDING:
       return {
         ...state,
-        logingIn: true
-      }
+        logingIn: true,
+      };
 
     case LOGIN_REQUEST_SUCCESS:
       return {
         ...state,
         isLoggedIn: true,
-        logingIn: false
-      }
+        logingIn: false,
+      };
 
     case LOGIN_REQUEST_FAILED:
       return {
         ...state,
         isLoggedIn: false,
-        logingIn: false
-      }
+        logingIn: false,
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
