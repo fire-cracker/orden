@@ -23,5 +23,5 @@ export const ordersState = {
   length: 0,
   success: false,
   fetching: false,
-  updating: false
-}
+  updating: false,
+};

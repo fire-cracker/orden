@@ -34,9 +34,9 @@ jest.mock('../../../utils/firebaseConfig', () => ({
       get: mockGetOrders,
       doc: jest.fn(() => ({
         get: mockGetOrder,
-      }))
-    }))
-  }))
+      })),
+    })),
+  })),
 }));
 
 describe('Users actions', () => {

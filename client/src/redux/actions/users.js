@@ -57,7 +57,6 @@ export const getUser = (userDetails) => async (dispatch) => {
     dispatch(setUserState(user));
     return user;
   } catch (error) {
-    toast.error('User not found');
     return error;
   }
 };
