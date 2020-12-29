@@ -41,7 +41,7 @@ const LoginPage = ({ history }) => {
 
   const { logingIn } = usersState
   return (
-    <div className='login-wrapper' data-testid="login-page">
+    <div className='login-wrapper' data-testid='login-page'>
       <Modal
         show={true}
         size='lg'

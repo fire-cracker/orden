@@ -61,7 +61,6 @@ describe('Login Page', () => {
 
   it('should render a form with name, email and password fields', () => {
     const { queryByTestId } = setup()
-    const loginForm = queryByTestId('login-form')
     expect(queryByTestId('login-form')).toBeTruthy()
     expect(queryByTestId('email')).toBeTruthy()
     expect(queryByTestId('password')).toBeTruthy()

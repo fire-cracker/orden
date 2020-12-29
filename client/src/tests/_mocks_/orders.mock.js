@@ -12,9 +12,16 @@ export const order = {
     phone: '015252098067',
   },
   title: 'Test Order 1',
-  uid: 'hKlIKPoZc2xCKGTUKZK2',
+  id: 'hKlIKPoZc2xCKGTUKZK2',
 };
 
 export const orders = [order];
 
-export const orderState = {};
+export const ordersState = {
+  orders,
+  order,
+  length: 0,
+  success: false,
+  fetching: false,
+  updating: false
+}

@@ -63,7 +63,7 @@ const Order = ({ match }) => {
   const { bookingDate, title, address, customer } = orderDetails
 
   return (
-    <div className='order-wrapper'>
+    <div className='order-wrapper' data-testid='order-wrapper'>
       <Wrapper>
         <div className='p-lg-2'>
           {fetching ? (
@@ -89,7 +89,7 @@ const Order = ({ match }) => {
                       </Col>
                     </Col>
                     <Col md={12} className='justify-content-center align-items-center'>
-                      <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                      <Form noValidate validated={validated} data-testid='order-form' onSubmit={handleSubmit}>
                         <Form.Row>
                           <Form.Group as={Col} md='6'>
                             <Form.Label>Title</Form.Label>
@@ -98,6 +98,7 @@ const Order = ({ match }) => {
                               type='text'
                               name='title'
                               value={title}
+                              data-testid='title'
                               onChange={onhandleChange}
                             />
                           </Form.Group>
@@ -108,7 +109,7 @@ const Order = ({ match }) => {
                               value={moment(new Date(bookingDate)).format('YYYY-MM-DD')}
                               name='bookingDate'
                               type='date'
-                              min={moment().format('YYYY-MM-DD')}
+                              data-testid='bookingDate'
                               onChange={onhandleChange}
                             />
                           </Form.Group>
@@ -122,7 +123,7 @@ const Order = ({ match }) => {
                               Name
                             </Form.Label>
                             <Col>
-                              <Form.Control plaintext readOnly value={customer?.name || 'N/A'} />
+                              <Form.Control plaintext readOnly data-testid='name' value={customer?.name || 'N/A'} />
                             </Col>
                           </Form.Group>
                           <Form.Group as={Col} md='6'>
@@ -130,7 +131,7 @@ const Order = ({ match }) => {
                               Email
                             </Form.Label>
                             <Col>
-                              <Form.Control plaintext readOnly value={customer?.email || 'N/A'} />
+                              <Form.Control plaintext readOnly data-testid='email' value={customer?.email || 'N/A'} />
                             </Col>
                           </Form.Group>
                           <Form.Group as={Col} md='12' sm={{ span: 10, offset: 2 }}>
@@ -138,7 +139,7 @@ const Order = ({ match }) => {
                               Phone
                             </Form.Label>
                             <Col>
-                              <Form.Control plaintext readOnly value={customer?.phone || 'N/A'} />
+                              <Form.Control plaintext readOnly data-testid='phone' value={customer?.phone || 'N/A'} />
                             </Col>
                           </Form.Group>
                         </Form.Row>
@@ -151,7 +152,7 @@ const Order = ({ match }) => {
                               Street
                             </Form.Label>
                             <Col>
-                              <Form.Control plaintext readOnly value={address?.street || 'N/A'} />
+                              <Form.Control plaintext readOnly data-testid='street' value={address?.street || 'N/A'} />
                             </Col>
                           </Form.Group>
                           <Form.Group as={Col} md='6'>
@@ -159,7 +160,7 @@ const Order = ({ match }) => {
                               Zip
                             </Form.Label>
                             <Col>
-                              <Form.Control plaintext readOnly value={address?.zip || 'N/A'} />
+                              <Form.Control plaintext readOnly data-testid='zip' value={address?.zip || 'N/A'} />
                             </Col>
                           </Form.Group>
                           <Form.Group as={Col} md='6'>
@@ -167,7 +168,7 @@ const Order = ({ match }) => {
                               City
                             </Form.Label>
                             <Col>
-                              <Form.Control plaintext readOnly value={address?.city || 'N/A'} />
+                              <Form.Control plaintext readOnly data-testid='city' value={address?.city || 'N/A'} />
                             </Col>
                           </Form.Group>
                           <Form.Group as={Col} md='6'>
@@ -175,14 +176,15 @@ const Order = ({ match }) => {
                               Country
                             </Form.Label>
                             <Col>
-                              <Form.Control plaintext readOnly value={address?.country || 'N/A'} />
+                              <Form.Control plaintext readOnly data-testid='country' value={address?.country || 'N/A'} />
                             </Col>
                           </Form.Group>
                         </Form.Row>
                         <Form.Row className='justify-content-center align-items-center'>
                           <Button
-                            className='order-buttton bg-black mt-3'
+                            className='order-button bg-black mt-3'
                             type='submit'
+                            data-testid='order-button'
                             disabled={updating || disabled}
                           >
                             {updating ? (
