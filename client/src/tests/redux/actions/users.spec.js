@@ -12,7 +12,6 @@ import { user } from '../../_mocks_/users.mock';
 
 const createMockStore = configureMockStore([thunk]);
 
-jest.mock('../../../utils/firebaseConfig', () => jest.fn());
 const mockSignInWithEmailAndPassword = jest
   .fn()
   .mockResolvedValueOnce('true')

@@ -41,7 +41,7 @@ const LoginPage = ({ history }) => {
 
   const { logingIn } = usersState
   return (
-    <div className='login-wrapper'>
+    <div className='login-wrapper' data-testid="login-page">
       <Modal
         show={true}
         size='lg'
@@ -69,7 +69,7 @@ const LoginPage = ({ history }) => {
                   </Col>
                 </Col>
                 <Col md={12} className='justify-content-center align-items-center'>
-                  <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                  <Form noValidate validated={validated} data-testid="login-form" onSubmit={handleSubmit}>
                     <Form.Row className='flex-column justify-content-center align-items-center'>
                       <Form.Group as={Col} controlId='validationCustom01'>
                         <Form.Label></Form.Label>
@@ -78,6 +78,7 @@ const LoginPage = ({ history }) => {
                           type='text'
                           placeholder='email'
                           name='email'
+                          data-testid="email"
                           onChange={onhandleChange}
                         />
                       </Form.Group>
@@ -88,12 +89,13 @@ const LoginPage = ({ history }) => {
                           type='password'
                           placeholder='password'
                           name='password'
+                          data-testid="password"
                           onChange={onhandleChange}
                         />
                       </Form.Group>
                     </Form.Row>
                     <Form.Row className='justify-content-center align-items-center'>
-                      <Button className='bg-black border-0 rounded-0' type='submit' disabled={logingIn}>
+                      <Button className='bg-black border-0 rounded-0' data-testid="login-button" type='submit' disabled={logingIn}>
                         {logingIn ? (
                           <ClipLoader size={30} color={'#fff'} loading={true} />
                         ) : (
